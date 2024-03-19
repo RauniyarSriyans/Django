@@ -41,6 +41,10 @@ INSTALLED_APPS = [
 
     # local apps
     "tripp",
+
+    # third party apps 
+    "crispy_forms", 
+    "crispy_tailwind",
 ]
 
 MIDDLEWARE = [
@@ -58,7 +62,7 @@ ROOT_URLCONF = "app5.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,3 +134,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_URL = '/media/'
 # path to the actual file
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# where should the user go after login - if not next
+LOGIN_REDIRECT_URL = 'trip-list'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
+CRISPY_TEMPLATE_PACK = "tailwind"
