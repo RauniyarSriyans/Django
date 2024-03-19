@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <div>
+            <a href="/admin/">Admin</a>
+            <!-- Rather than hardcoding URLs, I am assigning a name to each URL route in the urls.py -->
+            <!-- Even if the routes change tomorrow from movie to movie-me, for instance, the name remains the same, so no changes -->
+            <a href="{% url 'movie-list' %}">Fav Movies</a>
+            <a href="/about">About</a>
+        </div>
+        {% block body_content %}{% endblock %}
+    </body>
+</html>

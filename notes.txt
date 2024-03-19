@@ -1,0 +1,149 @@
+# Setting Django 
+
+1. Create a virtual environment in the project directory with the following command:
+python -m venv 'name of the virtual environment'
+
+2. Activate the virtual environment with the following command:
+source 'name of the virtual environment'/bin/activate
+
+3. Install Django with the following command:
+pip install django
+
+4. Create a new Django project with the following command:
+django-admin startproject 'name of the project' .
+
+5. Change into the project directory with the following command:
+cd 'name of the project'
+
+6. Create a new Django app with the following command:
+python manage.py startapp 'name of the app'
+
+7. Add the app to the installed apps in the settings.py file inside the project directory.
+INSTALLED_APPS = [
+    ...
+    'name of the app',
+    ...
+]
+
+8. To run the server, use the following command:
+python manage.py runserver
+
+
+# Setting views and URLs
+
+1. To add views, go to the views.py file inside the app directory and create a function that returns an HttpResponse object.
+2. Add the path to the urls.py file inside the project directory, not my_app directory.
+3. You have to import the function that returns the HttpResponse object from the views.py file and add it to the urlpatterns list
+as follows:
+path("pathname/", function name),
+4. For dynamic URLS, use placeholders in the URL pattern and pass the value to the view function as an argument.
+Example:
+path("pathname/<int:variable>/<str:name>", function name),
+Here, it is important to note that the variable names match the variable names in the view function.
+
+# Django Template Language 
+
+1. To add a variable, use the following syntax:
+{{ variable name }}
+
+2. To add a for loop, use the following syntax:
+{% for item in list %}
+    {{ item }}
+{% endfor %}
+
+3. To add an if statement, use the following syntax:
+{% if condition %}
+    {{ variable name }}
+{% endif %}
+
+4. To add a comment, use the following syntax:
+{# comment #}
+
+5. To add a filter, use the following syntax:
+{{ variable name | filter name }}
+
+The list of filters available can be found at the following link:
+https://docs.djangoproject.com/en/3.2/ref/templates/builtins/
+
+6. To add a block, use the following syntax:
+{% block block name %}
+    {{ variable name }}
+{% endblock %}
+
+7. To add an include, use the following syntax:
+{% include 'template name' %}
+
+8. To add an extends, use the following syntax:
+{% extends 'base.html' %}
+
+9. To add a static file, use the following syntax:
+{% load static %}
+{% static 'file name' %}
+
+10. To add a URL, use the following syntax:
+{% url 'name of the URL' %}
+
+11. To add a csrf token, use the following syntax:
+{% csrf_token}
+
+12. To add a form, use the following syntax:
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Submit</button>
+</form>
+
+# Templates 
+
+1. By default, Django looks for templates in the templates directory inside the app directory.
+If the app is called abc, for example, the directory structure should look like this:
+abc/templates/abc/abc.html --> the base abc is the app directory, and the second abc is the templates directory, which 
+again contains another directory with the same app name, and finally all the templates. 
+2. To add a name of the url rather than the path, use the following syntax:
+{% url 'name of the URL' %} 
+3. To add a static file such as an image, use the following syntax:
+{% load static %}
+{% static 'file name' %}
+
+
+# Django Models 
+
+1. CRUD operations -> Create, Read, Update, Delete --> Operations you want to do with database
+2. To create a model, go to the models.py file inside the app directory and create a class that inherits from the models.Model class.
+3. Inside the class, create attributes that represent the columns in the database.
+4. To create a migration, use the following command:
+python manage.py makemigrations
+5. To apply the migration, use the following command:
+python manage.py migrate
+6. To interact with the database, use the following command:
+python manage.py shell
+7. To create an object, use the following syntax:
+variable name = class name(attribute name = value)
+8. To save the object to the database, use the following syntax:
+variable name.save()
+9. To retrieve all objects, use the following syntax:
+class name.objects.all()
+10. To retrieve a specific object, use the following syntax:
+class name.objects.get(attribute name = value)
+11. To update an object, use the following syntax:
+variable name.attribute name = new value
+variable name.save()
+12. To delete an object, use the following syntax:
+variable name.delete()
+
+# handling Errors
+
+1. Use get_object_or_404 to get an object from the database and return a 404 error if the object does not exist.
+2. Use get_list_or_404 to get a list of objects from the database and return a 404 error if the list is empty.
+
+# Django Admin 
+
+1. To create a superuser, use the following command:
+python manage.py createsuperuser
+
+2. To add a model to the admin site, go to the admin.py file inside the app directory and import the model and register 
+it with the admin site. It can be done as follows:
+from .models import model name
+admin.site.register(model name)
+
+

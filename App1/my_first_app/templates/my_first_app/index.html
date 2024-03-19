@@ -1,0 +1,15 @@
+{% extends "my_first_app/_base.html" %}
+
+<!-- Here, I am simply adding this content to the body_content block in the _base.html file -->
+{% block body_content %}
+    <h1>My Favorite Movies list</h1>
+    {% load static %}
+    <img src="{% static 'my_first_app/image1.png' %}" alt="Haha picture" style="width:1000px;height:500px;">
+    {% if movies %}
+        {% for movie in movies %}
+            <li><a href=https://www.google.com/search?q={{movie}}>{{ movie|title}}</a></li>
+        {% endfor %}
+    {% else %}
+        <h1>No movies found</h1>
+    {% endif %}
+{% endblock %}
